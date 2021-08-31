@@ -15,6 +15,9 @@ class PerspectiveTransform:
 
     @classmethod
     def __perspectiveMatrix(cls, polygon):
+        """
+        Function to generate the perpective transformation matrix.
+        """
         # Original frame
         polygon = np.array(polygon, dtype="float32")
         (tl, tr, br, bl) = polygon
@@ -42,6 +45,15 @@ class PerspectiveTransform:
     
     @classmethod
     def transform(cls, point):
+        """
+        Function to transform a point to the Polygon perspective
+
+        INPUT
+            point:  Point to be transformed in (X,Y)
+        
+        RETURN
+            Return the point that is transformed to given polygon perspective.
+        """
         pt = np.dot(cls.perpectiveMatrix, np.append(np.array(point), 1))
         return np.array((pt/pt[-1])[:2], dtype="int")
 
